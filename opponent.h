@@ -1,7 +1,7 @@
 #ifndef OPPONENT_H
 #define OPPONENT_H
 
-class Opponent {
+class opponent {
  public:
  
  private:
