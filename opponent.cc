@@ -1,21 +1,156 @@
 #include "opponent.h"
-#include "cpputils/graphics/image.h"
 
-void opponent::Draw(graphics::Image& game_screen) {
-  graphics::Image my_image;
-  my_image.Load("opponent.bmp")
-  
+void Opponent::Draw(graphics::Image& image) {
+  // Creates Opponent BMP 
+  graphics::Image opponent(50, 50);
+  // head of the enemy (roughly)
+  opponent.DrawLine(12, 1, 14, 1, 0, 0, 0, 1);
+  opponent.DrawRectangle(11, 2, 1, 1, 0, 0, 0);
+  opponent.DrawRectangle(15, 2, 1, 1, 0, 0, 0);
+  opponent.DrawLine(12, 2, 14, 2, 128, 0, 128, 1);
+  opponent.DrawRectangle(11, 3, 4, 3, 128, 0, 128);
+  opponent.DrawLine(10, 3, 10, 4, 0, 0, 0, 1);
+  opponent.DrawLine(16, 3, 16, 4, 0, 0, 0, 1);
+  // major fills
+  opponent.DrawRectangle(10, 5, 2, 15, 128, 0, 128);
+  opponent.DrawRectangle(15, 5, 2, 15, 128, 0, 128);
+  opponent.DrawRectangle(9, 14, 9, 2, 128, 0, 128);
+  opponent.DrawRectangle(8, 12, 2, 2, 128, 0, 128);
+  opponent.DrawRectangle(17, 12, 2, 2, 128, 0, 128);
+  opponent.DrawRectangle(11, 20, 2, 2, 128, 0, 128);
+  opponent.DrawRectangle(18, 20, 2, 2, 128, 0, 128);
+  opponent.DrawRectangle(14, 20, 2, 2, 128, 0, 128);
+  // outline (why did i make this creature so difficult to draw :(  )
+  opponent.DrawLine(9, 5, 9, 7, 0, 0, 0, 1);
+  opponent.DrawLine(8, 8, 8, 11, 0, 0, 0, 1);
+  opponent.DrawLine(17, 5, 17, 7, 0, 0, 0, 1);
+  opponent.DrawLine(10, 3, 10, 4, 0, 0, 0, 1);
+  opponent.DrawLine(18, 8, 18, 11, 0, 0, 0, 1);
+  opponent.DrawLine(5, 8, 5, 9, 0, 0, 0, 1);
+  opponent.DrawLine(6, 10, 6, 12, 0, 0, 0, 1);
+  opponent.DrawLine(8, 14, 8, 15, 0, 0, 0, 1);
+  opponent.DrawLine(9, 17, 9, 20, 0, 0, 0, 1);
+  opponent.DrawLine(21, 8, 21, 9, 0, 0, 0, 1);
+  opponent.DrawLine(20, 10, 20, 12, 0, 0, 0, 1);
+  opponent.DrawLine(18, 14, 18, 15, 0, 0, 0, 1);
+  opponent.DrawLine(17, 17, 17, 20, 0, 0, 0, 1);
+  opponent.DrawLine(13, 20, 13, 22, 0, 0, 0, 1);
+  opponent.DrawLine(12, 17, 12, 19, 0, 0, 0, 1);
+  opponent.DrawLine(14, 17, 14, 19, 0, 0, 0, 1);
+  opponent.DrawRectangle(13, 16, 1, 1, 0, 0, 0);
+  opponent.DrawRectangle(7, 13, 1, 1, 0, 0, 0);
+  opponent.DrawRectangle(19, 13, 1, 1, 0, 0, 0);
+  opponent.DrawLine(10, 21, 12, 23, 0, 0, 0, 1);
+  opponent.DrawLine(14, 23, 16, 21, 0, 0, 0, 1);
+  opponent.DrawLine(7, 16, 8, 17, 0, 0, 0, 1);
+  opponent.DrawLine(19, 16, 18, 17, 0, 0, 0, 1);
+  opponent.DrawLine(6, 7, 7, 8, 0, 0, 0, 1);
+  opponent.DrawLine(19, 8, 20, 7, 0, 0, 0, 1);
+  opponent.DrawLine(12, 12, 13, 13, 0, 0, 0, 1);
+  opponent.DrawRectangle(14, 12, 1, 1, 0, 0, 0);
+  // misc. coloring
+  opponent.DrawRectangle(12, 13, 1, 1, 128, 0, 128);
+  opponent.DrawRectangle(14, 13, 1, 1, 128, 0, 128);
+  opponent.DrawRectangle(12, 22, 1, 1, 128, 0, 128);
+  opponent.DrawRectangle(14, 22, 1, 1, 128, 0, 128);
+  opponent.DrawLine(8, 16, 12, 16, 128, 0, 128, 1);
+  opponent.DrawLine(8, 16, 12, 16, 128, 0, 128, 1);
+  opponent.DrawLine(14, 16, 18, 16, 128, 0, 128, 1);
+  opponent.DrawLine(6, 8, 6, 9, 128, 0, 128, 1);
+  opponent.DrawLine(20, 8, 20, 9, 128, 0, 128, 1);
+  opponent.DrawLine(7, 9, 7, 12, 128, 0, 128, 1);
+  opponent.DrawLine(19, 9, 19, 12, 128, 0, 128, 1);
+  opponent.DrawLine(9, 8, 9, 11, 128, 0, 128, 1);
+  opponent.DrawLine(17, 8, 17, 11, 128, 0, 128, 1);
+  opponent.DrawLine(17, 8, 17, 11, 128, 0, 128, 1);
+  opponent.DrawRectangle(12, 6, 1, 1, 128, 0, 128);
+  opponent.DrawRectangle(14, 6, 1, 1, 128, 0, 128);
+  // eye part
+  opponent.DrawRectangle(12, 7, 3, 5, 255, 255, 255);
+  opponent.DrawRectangle(13, 6, 1, 1, 255, 255, 255);
+  opponent.DrawRectangle(13, 12, 1, 1, 255, 255, 255);
+  opponent.DrawLine(13, 7, 13, 11, 255, 0, 0, 1);
+  opponent.DrawLine(13, 17, 13, 19, 255, 255, 255, 1);
+
+  int icon_width = opponent.GetWidth();
+  int icon_height = opponent.GetHeight();
+  int image_width = image.GetWidth();
+  int image_height = image.GetHeight();
+  int c_w, c_h;
+  // Calculates center of images. Odd and Even
+  if (icon_width % 2 == 0) {
+    c_w = icon_width / 2;
+  } else {
+    c_w = (icon_width + 1) / 2;
+  }
+  if (icon_height % 2 == 0) {
+    c_h = icon_height / 2;
+  } else {
+    c_h = (icon_height + 1) / 2;
+  }
+  for (int h = 0; h < icon_height; h++) {
+    for (int w = 0; w < icon_width; w++) {
+      int x_calc = x_ - c_w + w + 1;
+      int y_calc = y_ - c_h + h + 1;
+      if (x_calc >= image_width) {
+        continue;
+      }
+      if (y_calc >= image_height) {
+        continue;
+      }
+      if (x_calc < 0) {
+        continue;
+      }
+      if (y_calc < 0) {
+        continue;
+      }
+      graphics::Color set_pixel;
+      set_pixel = opponent.GetColor(w, h);
+      image.SetColor(x_calc, y_calc, set_pixel);
+    }
+  }
 }
 
-void opponentProjectile::Draw(graphics::Image& game_screen) {
-  graphics::Image my_image;
-  my_image.Load("oprojectile.bmp")
-}
-
-bool opponent::IntersectWith(Player& player) {
-
-}
-
-bool opponentProjectile::IntersectWith(Player& player) {
-
+void OpponentProjectile::Draw(graphics::Image& image) {
+  // Creates Opponent Projectile BMP
+  graphics::Image oProjectile(5, 5);
+  oProjectile.DrawLine(1, 4, 1, 0, 0, 255, 0, 1);
+  oProjectile.DrawLine(3, 4, 3, 0, 0, 255, 0, 1);
+  int icon_width = oProjectile.GetWidth();
+  int icon_height = oProjectile.GetHeight();
+  int image_width = image.GetWidth();
+  int image_height = image.GetHeight();
+  int c_w, c_h;
+  // Calculates center of images. Odd and Even
+  if (icon_width % 2 == 0) {
+    c_w = icon_width / 2;
+  } else {
+    c_w = (icon_width + 1) / 2;
+  }
+  if (icon_height % 2 == 0) {
+    c_h = icon_height / 2;
+  } else {
+    c_h = (icon_height + 1) / 2;
+  }
+  for (int h = 0; h < icon_height; h++) {
+    for (int w = 0; w < icon_width; w++) {
+      int x_calc = x_ - c_w + w + 1;
+      int y_calc = y_ - c_h + h + 1;
+      if (x_calc >= image_width) {
+        continue;
+      }
+      if (y_calc >= image_height) {
+        continue;
+      }
+      if (x_calc < 0) {
+        continue;
+      }
+      if (y_calc < 0) {
+        continue;
+      }
+      graphics::Color set_pixel;
+      set_pixel = oProjectile.GetColor(w, h);
+      image.SetColor(x_calc, y_calc, set_pixel);
+    }
+  }
 }
