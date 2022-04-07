@@ -2,12 +2,11 @@
 #define PLAYER_H
 
 #include "cpputils/graphics/image.h"
-
+#include "opponent.h"
 class Player {
  public:
-  Player() {}
-  Player(int x, int y, int kWidth, int kHeight)
-        : x_(x), y_(y), kWidth_(kWidth), kHeight_(kHeight) {}
+  Player() : Player(0, 0) {}
+  Player(int x, int y) : x_(x), y_(y) {}
   int GetX() { return x_; }
   int GetY() { return y_; }
   int GetWidth() { return kWidth_; }
@@ -18,20 +17,20 @@ class Player {
   void SetY(int y) {
       y_ = y;
   }
+
   void Draw(graphics::Image& image);
-  bool IntersectWith(Opponent& opponent);
+  bool IntersectsWith(const Opponent& opponent);
  private:
   int x_;
   int y_;
-  int const kWidth_;
-  int const kHeight_;
+  int const kWidth_ = 50;
+  int const kHeight_ = 50;
 };
 
 class PlayerProjectile {
  public:
-  PlayerProjectile() {}
-  PlayerProjectile(int x, int y, int kWidth, int kHeight)
-        : x_(x), y_(y), kWidth_(kWidth), kHeight_(kHeight) {}
+  PlayerProjectile() : PlayerProjectile(0, 0) {}
+  PlayerProjectile(int x, int y) : x_(x), y_(y) {}
   int GetX() { return x_; }
   int GetY() { return y_; }
   int GetWidth() { return kWidth_; }
@@ -43,11 +42,12 @@ class PlayerProjectile {
       y_ = y;
   }
   void Draw(graphics::Image& image);
-  bool IntersectWith(Opponent& opponent);
+  bool IntersectsWith(const Opponent& opponent);
  private:
   int x_;
   int y_;
-  int const kWidth_;
-  int const kHeight_;
+  int const kWidth_ = 5;
+  int const kHeight_ = 5;
 };
 #endif
+
