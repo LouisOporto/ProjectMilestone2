@@ -1,8 +1,29 @@
 #include "opponent.h"
 
-void Opponent::Draw(graphics::Image& image) {
+void Opponent::Draw(graphics::Image& op_image)
+{
+  //define size
+  const int op_size = 50;
+
+  //graphics image
+  //graphics::Image op_image(op_size, op_size);
+
+  //base of pic
+  op_image.DrawCircle(op_size/2, op_size/2, op_size/3, 0,0,0);
+  op_image.DrawPolygon({25,20,10,5,10,30}, 0,0,0,0);
+  op_image.DrawPolygon({25,20,40,5,40,30}, 0,0,0,0);
+  
+  //eyes
+  op_image.DrawCircle(18, 20, 2,255,0,0,0);
+  op_image.DrawCircle(32, 20, 2,255,0,0,0);
+
+  //mouth
+  op_image.DrawPolygon({25,25,20,32,30,32}, 243,0,0,0);
+
+  op_image.SaveImageBmp(op_img_file);
   // head of the enemy (roughly)
-  int x = GetX() - 24;
+  
+/*int x = GetX() - 24;
   int y = GetY() - 24;
   image.DrawLine(x + 23, y + 24, x + 25, y + 24, 0, 0, 0, 1);
   image.DrawRectangle(x + 22, y + 15, 1, 1, 0, 0, 0);
@@ -71,11 +92,18 @@ void Opponent::Draw(graphics::Image& image) {
   image.DrawRectangle(x + 24, y + 25, 1, 1, 255, 255, 255);
   image.DrawLine(x + 24, y + 20, x + 24, y + 24, 255, 0, 0, 1);
   image.DrawLine(x + 24, y + 30, x + 24, y + 32, 255, 255, 255, 1);
+  */
+
 }
 
 void OpponentProjectile::Draw(graphics::Image& image) {
+  image.DrawRectangle(x_, y_, 2, 2, kOrange);
+  image.DrawRectangle(x_+3, y_, 2, 2, kOrange);
+  image.DrawRectangle(x_+3, y_+3, 2, 2, kOrange);
+  image.DrawRectangle(x_, y_+3, 2, 2, kOrange);
+  
   // Creates Opponent Projectile BMP
-  graphics::Image oProjectile(5, 5);
+ /* graphics::Image oProjectile(5, 5);
   oProjectile.DrawLine(1, 4, 1, 0, 0, 255, 0, 1);
   oProjectile.DrawLine(3, 4, 3, 0, 0, 255, 0, 1);
   int icon_width = kWidth_;
@@ -114,5 +142,33 @@ void OpponentProjectile::Draw(graphics::Image& image) {
       set_pixel = oProjectile.GetColor(w, h);
       image.SetColor(x_calc, y_calc, set_pixel);
     }
-  }
+  }*/
 }
+
+void PadPoints(std::vector<int> &points, int pad_x, int pad_y)
+{
+   for(int i = 0; i < points.size(); i++)
+   {
+     if(i % 2 == 0)
+     {
+       points[i] += pad_x;
+     }
+    else
+    {
+      points[i] += pad_y;
+    }
+   }
+}
+
+void SaveFile(Opponent enemy)
+{
+  std::string file_name;
+  std::cout << "Enter a file name for the opponent";
+  std::cin >> file_name;
+  enemy.SetX(0);
+  enemy.SetY(0);
+
+  graphics::Image e_img(50,50);
+  enemy.Draw(e_img);
+
+  e_img.SaveImageBmp(file_name);

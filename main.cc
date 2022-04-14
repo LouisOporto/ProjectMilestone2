@@ -5,8 +5,8 @@
 
 #include "cpputils/graphics/image.h"
 
-
 int main() {
+
   graphics::Image game_screen(800, 600);
   Player player(400, 500);
   PlayerProjectile pprojectile(400, 445);
