@@ -5,111 +5,89 @@
 
 void Player::Draw(graphics::Image& image) {
   // Creates Player BMP
-  graphics::Image player(50, 50);
-  player.DrawPolygon({20, 32, 22, 28, 12, 22, 10, 26}, 71, 69, 69);
-  player.DrawPolygon({30, 32, 28, 28, 38, 22, 40, 26}, 71, 69, 69);
-  player.DrawPolygon({12, 22, 10, 10, 8, 24, 6, 45, 5, 35, 10, 26}, 116, 112,
-                     112);
-  player.DrawPolygon({38, 22, 40, 10, 42, 24, 44, 45, 45, 35, 40, 26}, 116, 112,
-                     112);
-  player.DrawPolygon({25, 2, 28, 5, 32, 30, 25, 35, 18, 30, 22, 5}, 116, 112,
-                     112);
-  player.DrawPolygon({32, 30, 30, 40, 20, 40, 18, 30, 25, 35}, 100, 80, 80);
-  player.DrawPolygon(
-      {22, 20, 24, 15, 26, 15, 28, 20, 28, 28, 26, 30, 24, 30, 22, 28}, 75, 187,
-      222);
-  player.DrawRectangle(23, 1, 1, 4, 255, 40, 40);
-  player.DrawRectangle(23, 5, 1, 4, 116, 42, 42);
-  player.DrawRectangle(27, 1, 1, 4, 255, 40, 40);
-  player.DrawRectangle(27, 5, 1, 4, 116, 42, 42);
-  player.DrawRectangle(20, 41, 11, 1, 53, 194, 202);
-  player.DrawRectangle(20, 42, 11, 1, 69, 235, 244);
-  int icon_width = player.GetWidth();
-  int icon_height = player.GetHeight();
-  int image_width = image.GetWidth();
-  int image_height = image.GetHeight();
-  int c_w, c_h;
-  // Calculates center of images. Odd and Even
-  if (icon_width % 2 == 0) {
-    c_w = icon_width / 2;
-  } else {
-    c_w = (icon_width + 1) / 2;
+  int x = GetX();
+  int y = GetY();
+  if (x < 0) {
+    x = 0;
+  } else if ((x + GetWidth() - 1) >= 800) {
+    x = 749;
   }
-  if (icon_height % 2 == 0) {
-    c_h = icon_height / 2;
-  } else {
-    c_h = (icon_height + 1) / 2;
+  if (y < 0) {
+    y = 0;
+  } else if ((y + GetHeight() - 1) >= 600) {
+    y = 549;
   }
-  for (int h = 0; h < icon_height; h++) {
-    for (int w = 0; w < icon_width; w++) {
-      int x_calc = x_ - c_w + w + 1;
-      int y_calc = y_ - c_h + h + 1;
-      if (x_calc >= image_width) {
-        continue;
-      }
-      if (y_calc >= image_height) {
-        continue;
-      }
-      if (x_calc < 0) {
-        continue;
-      }
-      if (y_calc < 0) {
-        continue;
-      }
-      graphics::Color set_pixel;
-      set_pixel = player.GetColor(w, h);
-      image.SetColor(x_calc, y_calc, set_pixel);
-    }
-  }
+  image.DrawPolygon(
+      {x + 20, y + 32, x + 22, y + 28, x + 12, y + 22, x + 10, y + 26}, 71, 69,
+      69);
+  image.DrawPolygon(
+      {x + 30, y + 32, x + 28, y + 28, x + 38, y + 22, x + 40, y + 26}, 71, 69,
+      69);
+  image.DrawPolygon({x + 12, y + 22, x + 10, y + 10, x + 8, y + 24, x + 6,
+                     y + 45, x + 5, y + 35, x + 10, y + 26},
+                    116, 112, 112);
+  image.DrawPolygon({x + 38, y + 22, x + 40, y + 10, x + 42, y + 24, x + 44,
+                     y + 45, x + 45, y + 35, x + 40, y + 26},
+                    116, 112, 112);
+  image.DrawPolygon({x + 25, y + 2, x + 28, y + 5, x + 32, y + 30, x + 25,
+                     y + 35, x + 18, y + 30, x + 22, y + 5},
+                    116, 112, 112);
+  image.DrawPolygon({x + 32, y + 30, x + 30, y + 40, x + 20, y + 40, x + 18,
+                     y + 30, x + 25, y + 35},
+                    100, 80, 80);
+  image.DrawPolygon(
+      {x + 22, y + 20, x + 24, y + 15, x + 26, y + 15, x + 28, y + 20, x + 28,
+       y + 28, x + 26, y + 30, x + 24, y + 30, x + 22, y + 28},
+      75, 187, 222);
+  image.DrawRectangle(x + 23, y + 1, 1, 4, 255, 40, 40);
+  image.DrawRectangle(x + 23, y + 5, 1, 4, 116, 42, 42);
+  image.DrawRectangle(x + 27, y + 1, 1, 4, 255, 40, 40);
+  image.DrawRectangle(x + 27, y + 5, 1, 4, 116, 42, 42);
+  image.DrawRectangle(x + 20, y + 41, 11, 1, 53, 194, 202);
+  image.DrawRectangle(x + 20, y + 42, 11, 1, 69, 235, 244);
 }
 void PlayerProjectile::Draw(graphics::Image& image) {
   // Creates Player Projectile BMP
-  graphics::Image p_projectile(5, 5);
-  p_projectile.DrawLine(1, 4, 1, 0, 255, 0, 0, 1);  // outside
-  p_projectile.DrawLine(3, 4, 3, 0, 255, 0, 0, 1);  // outside
-  int icon_width = p_projectile.GetWidth();
-  int icon_height = p_projectile.GetHeight();
-  int image_width = image.GetWidth();
-  int image_height = image.GetHeight();
-  int c_w, c_h;
-  // Calculates center of images. Odd and Even
-  if (icon_width % 2 == 0) {
-    c_w = icon_width / 2;
-  } else {
-    c_w = (icon_width + 1) / 2;
+  int x = GetX();
+  int y = GetY();
+  if (x < 0) {
+    x = 0;
+  } else if ((x + GetWidth() - 1) >= 800) {
+    x = 794;
   }
-  if (icon_height % 2 == 0) {
-    c_h = icon_height / 2;
-  } else {
-    c_h = (icon_height + 1) / 2;
+  if (y < 0) {
+    y = 0;
+  } else if ((y + GetHeight() - 1) >= 600) {
+    y = 594;
   }
-  for (int h = 0; h < icon_height; h++) {
-    for (int w = 0; w < icon_width; w++) {
-      int x_calc = x_ - c_w + w + 1;
-      int y_calc = y_ - c_h + h + 1;
-      if (x_calc >= image_width) {
-        continue;
-      }
-      if (y_calc >= image_height) {
-        continue;
-      }
-      if (x_calc < 0) {
-        continue;
-      }
-      if (y_calc < 0) {
-        continue;
-      }
-      graphics::Color set_pixel;
-      set_pixel = p_projectile.GetColor(w, h);
-      image.SetColor(x_calc, y_calc, set_pixel);
-    }
+  image.DrawLine(x + 1, y + 4, x + 1, y + 0, 255, 0, 0, 1);  // outside
+  image.DrawLine(x + 3, y + 4, x + 3, y + 0, 255, 0, 0, 1);  // outside
+}
+
+bool Player::IntersectsWith(const Opponent& opponent) {
+  int x = GetX() - 24;
+  int y = GetY() - 24;
+  int xlow = opponent.GetX() - 24;
+  int xhigh = opponent.GetX() + 25;
+  int ylow = opponent.GetY() - 24;
+  int yhigh = opponent.GetY() + 25;
+  if (((x >= xlow) && (x <= xhigh)) || ((y >= ylow) && (y <= yhigh))) {
+    return true;
+  } else {
+    return false;
   }
 }
 
-bool Player::IntersectsWith(const Opponent& Opponent) {
-  return true;
-}
-
-bool PlayerProjectile::IntersectsWith(const Opponent& Opponent) {
-  return true;
+bool PlayerProjectile::IntersectsWith(const Opponent& opponent) {
+  int x = GetX() - 24;
+  int y = GetY() - 24;
+  int xlow = opponent.GetX() - 24;
+  int xhigh = opponent.GetX() + 25;
+  int ylow = opponent.GetY() - 24;
+  int yhigh = opponent.GetY() + 25;
+  if (((x >= xlow) && (x <= xhigh)) || ((y >= ylow) && (y <= yhigh))) {
+    return true;
+  } else {
+    return false;
+  }
 }
