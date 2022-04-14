@@ -47,4 +47,5 @@ class OpponentProjectile {
   int const kWidth_ = 5;
   int const kHeight_ = 5;
 };
+void DrawOp();
 #endif

@@ -5,37 +5,19 @@
 
 #include "cpputils/graphics/image.h"
 
+
 int main() {
-  // Creates Game Screen
-  graphics::Image game_screen (800, 600);
-  
-  int x, y;
-  std::cout << "Set position of player:\nx = ";
-  std::cin >> x;
-  std::cout << "y = ";
-  std::cin >> y;
-  Player Player(x, y);
-  Player.Draw(game_screen);
-  std::cout << "Set position of player projectile:\nx = ";
-  std::cin >> x;
-  std::cout << "y = ";
-  std::cin >> y;
-  PlayerProjectile pprojectile(x, y);
+  graphics::Image game_screen(800, 600);
+  Player player(400, 500);
+  PlayerProjectile pprojectile(400, 445);
+  Opponent opponent(400, 100);
+  OpponentProjectile oprojectile(400, 155);
+  player.Draw(game_screen);
   pprojectile.Draw(game_screen);
-  std::cout << "Set position of opponent:\nx = ";
-  std::cin >> x;
-  std::cout << "y = ";
-  std::cin >> y;
-  Opponent Opponent(x, y);
-  Opponent.Draw(game_screen);
-  std::cout << "Set position of opponent projectile:\nx = ";
-  std::cin >> x;
-  std::cout << "y = ";
-  std::cin >> y;
-  OpponentProjectile oprojectile(x, y);
+  opponent.Draw(game_screen);
   oprojectile.Draw(game_screen);
-  Player.IntersectsWith(Opponent);
-  pprojectile.IntersectsWith(Opponent);
+  player.IntersectsWith(opponent);
+  pprojectile.IntersectsWith(opponent);
 
   game_screen.ShowUntilClosed();
 return 0;
