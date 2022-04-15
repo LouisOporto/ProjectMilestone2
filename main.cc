@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include "opponent.cc"
+#include "player.cc"
 #include "opponent.h"
 #include "player.h"
 
